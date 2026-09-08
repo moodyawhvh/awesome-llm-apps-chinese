@@ -1,30 +1,32 @@
-# MCP Apps Generative UI Showcase
+> 🌐 本文档由 [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 翻译,英文原版见原项目。
+
+# MCP 应用生成式 UI 演示集
 
 https://github.com/user-attachments/assets/48eeab8d-7845-4d06-83ef-d518a807da03
 
-Book flights, reserve hotels, manage portfolios, and run a kanban board — all inside the chat. Built with [CopilotKit](https://github.com/CopilotKit/CopilotKit), [AG-UI](https://github.com/ag-ui-protocol/ag-ui), and [MCP Apps](https://github.com/modelcontextprotocol/ext-apps), showcasing the MCP Apps Extension (SEP-1865) for rendering interactive UIs directly in the chat.
+订机票、订酒店、管理投资组合、跑看板——全部在聊天里完成。基于 [CopilotKit](https://github.com/CopilotKit/CopilotKit)、[AG-UI](https://github.com/ag-ui-protocol/ag-ui) 和 [MCP Apps](https://github.com/modelcontextprotocol/ext-apps) 构建,演示 MCP Apps 扩展(SEP-1865)在聊天中直接渲染交互式 UI 的能力。
 
-**Gen UI concept — sandboxed in-chat apps over a tool protocol.** The MCP server registers tools (`workout-generator`, `create-portfolio`, `create-board`…) and links each to an HTML/JS resource via `_meta["ui/resourceUri"]`. When the agent calls a tool, CopilotKit mounts the linked app as a sandboxed iframe in the chat; the iframe talks back to MCP tools over JSON-RPC `postMessage`. Result: full, interactive product surfaces (multi-step wizards, drag-drop boards, live charts) running inline — server-owned logic, chat-owned presentation.
+**Gen UI 概念——跑在工具协议之上的沙箱聊天内应用。** MCP 服务器注册工具(`workout-generator`、`create-portfolio`、`create-board`……),并通过 `_meta["ui/resourceUri"]` 把每个工具链接到一个 HTML/JS 资源。当智能体调用某个工具时,CopilotKit 把关联的应用作为沙箱 iframe 挂载到聊天中;iframe 通过 JSON-RPC `postMessage` 与 MCP 工具回传通信。结果:完整可交互的产品界面(多步向导、拖拽看板、实时图表)内联运行——逻辑归服务器管,呈现归聊天管。
 
-## Live Demo
+## 在线演示
 
 **https://web-app-production-9af6.up.railway.app**
 
-## Featured Apps
+## 精选应用
 
-| App                         | Description                                                          | Example Prompt                                                   |
+| 应用                         | 说明                                                          | 示例提示词                                                   |
 | --------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| **✈️ Airline Booking**      | 5-step wizard: search flights, select seats, enter passenger details | "Book a flight from JFK to LAX on January 20th for 2 passengers" |
-| **🏨 Hotel Booking**        | 4-step wizard: search hotels, compare rooms, book accommodation      | "Find a hotel in Paris from January 15 to 18 for 2 guests"       |
-| **📈 Investment Simulator** | Portfolio management with live charts, buy/sell trades               | "Create a $10,000 tech-focused portfolio"                        |
-| **📋 Kanban Board**         | Drag-drop task management with columns and cards                     | "Create a kanban board for my software project"                  |
+| **✈️ 机票预订**      | 5 步向导:搜索航班、选择座位、填写乘客信息 | "帮我订 1 月 20 日 JFK 飞往 LAX 的机票,2 位乘客" |
+| **🏨 酒店预订**        | 4 步向导:搜索酒店、对比房型、预订住宿      | "帮我找巴黎 1 月 15 日至 18 日的酒店,2 位客人"       |
+| **📈 投资模拟器** | 投资组合管理,带实时图表和买卖交易               | "创建一个 1 万美元的科技股组合"                        |
+| **📋 看板**         | 拖拽式任务管理,带列和卡片                     | "为我的软件项目创建一个看板"                  |
 
-## Quick Start
+## 快速开始
 
-### 1. Install Dependencies
+### 1. 安装依赖
 
 ```bash
-# From the mcp-apps directory
+# 在 mcp-apps 目录下
 npm install
 
 cd mcp-server
@@ -32,52 +34,52 @@ npm install
 cd ..
 ```
 
-### 2. Set Environment Variables
+### 2. 配置环境变量
 
-Create `.env.local` in the `mcp-apps` directory:
+在 `mcp-apps` 目录下创建 `.env.local`:
 
 ```bash
 OPENAI_API_KEY=sk-...
 ```
 
-### 3. Build & Run
+### 3. 构建与运行
 
 ```bash
-# Terminal 1: Build and run MCP Server
+# 终端 1:构建并运行 MCP 服务器
 cd mcp-server
 npm run build
 npm run dev
-# Server runs at http://localhost:3001/mcp
+# 服务器运行在 http://localhost:3001/mcp
 
-# Terminal 2: Run Next.js Frontend (from mcp-apps directory)
+# 终端 2:运行 Next.js 前端(在 mcp-apps 目录下)
 npm run dev
-# Frontend at http://localhost:3000
+# 前端运行在 http://localhost:3000
 ```
 
-Open http://localhost:3000 and try one of the example prompts!
+打开 http://localhost:3000,试试示例提示词!
 
-## How It Works
+## 工作原理
 
-MCP Apps are interactive HTML/JS applications that render in sandboxed iframes within the chat sidebar. They communicate with the MCP server via JSON-RPC over postMessage.
+MCP 应用是渲染在聊天侧边栏沙箱 iframe 中的交互式 HTML/JS 应用,通过 postMessage 上的 JSON-RPC 与 MCP 服务器通信。
 
 ```
-User: "Book a flight from JFK to LAX"
+用户:"订一张 JFK 到 LAX 的机票"
         ↓
-AI calls search-flights tool
+AI 调用 search-flights 工具
         ↓
-MCPAppsMiddleware intercepts, fetches HTML resource
+MCPAppsMiddleware 拦截,获取 HTML 资源
         ↓
-CopilotKit renders flights-app.html in iframe
+CopilotKit 在 iframe 中渲染 flights-app.html
         ↓
-User interacts with wizard UI
+用户与向导 UI 交互
         ↓
-UI calls MCP tools via postMessage → server
+UI 经 postMessage 调用 MCP 工具 → 服务器
 ```
 
-### Tool Registration Pattern
+### 工具注册模式
 
 ```typescript
-// Tool declares its UI resource via _meta
+// 工具通过 _meta 声明自己的 UI 资源
 server.registerTool(
   "search-flights",
   {
@@ -87,53 +89,53 @@ server.registerTool(
   handler,
 );
 
-// Resource serves the HTML
+// 资源提供 HTML 内容
 server.registerResource(
   "flights-app",
   "ui://flights/flights-app.html",
   {
-    mimeType: "text/html+mcp", // Marks as MCP App
+    mimeType: "text/html+mcp", // 标记为 MCP 应用
   },
   () => ({ contents: [{ text: htmlContent }] }),
 );
 ```
 
-## Project Structure
+## 项目结构
 
 ```
 mcp-apps/
 ├── src/app/
-│   ├── page.tsx                    # Main demo page
+│   ├── page.tsx                    # 主演示页面
 │   └── api/copilotkit/route.ts     # CopilotKit + MCPAppsMiddleware
 ├── mcp-server/
-│   ├── server.ts                   # MCP server with all tools
+│   ├── server.ts                   # 包含所有工具的 MCP 服务器
 │   ├── src/
-│   │   ├── flights.ts              # 15 airports, 6 airlines
-│   │   ├── hotels.ts               # 10 cities, 30 hotels
-│   │   ├── stocks.ts               # 18 stocks, portfolios
-│   │   └── kanban.ts               # Board templates
+│   │   ├── flights.ts              # 15 个机场,6 家航空公司
+│   │   ├── hotels.ts               # 10 个城市,30 家酒店
+│   │   ├── stocks.ts               # 18 支股票,投资组合
+│   │   └── kanban.ts               # 看板模板
 │   └── apps/
-│       ├── flights-app.html        # Airline booking wizard
-│       ├── hotels-app.html         # Hotel booking wizard
-│       ├── trading-app.html        # Investment simulator
-│       └── kanban-app.html         # Kanban board
+│       ├── flights-app.html        # 机票预订向导
+│       ├── hotels-app.html         # 酒店预订向导
+│       ├── trading-app.html        # 投资模拟器
+│       └── kanban-app.html         # 看板
 └── README.md
 ```
 
-## Key Technologies
+## 关键技术
 
-- **CopilotKit** (`@copilotkit/*`) - AI chat interface with MCP Apps support
-- **AG-UI MCP Apps Middleware** - Bridges MCP servers with CopilotKit
-- **MCP SDK** (`@modelcontextprotocol/sdk`) - Model Context Protocol server
-- **Vite** - Bundles each app into single self-contained HTML files
+- **CopilotKit**(`@copilotkit/*`)—— 支持 MCP 应用的 AI 聊天界面
+- **AG-UI MCP Apps 中间件** —— 打通 MCP 服务器与 CopilotKit
+- **MCP SDK**(`@modelcontextprotocol/sdk`)—— Model Context Protocol 服务器
+- **Vite** —— 把每个应用打包成单个自包含 HTML 文件
 
-## Deployment
+## 部署
 
-The demo is deployed on Railway with two services:
+演示部署在 Railway 上,包含两个服务:
 
-| Service    | URL                                               |
+| 服务    | URL                                               |
 | ---------- | ------------------------------------------------- |
-| Web App    | https://web-app-production-9af6.up.railway.app    |
-| MCP Server | https://mcp-server-production-bbb4.up.railway.app |
+| Web 应用    | https://web-app-production-9af6.up.railway.app    |
+| MCP 服务器 | https://mcp-server-production-bbb4.up.railway.app |
 
-For production, set `MCP_SERVER_URL` environment variable to point to your deployed MCP server.
+生产环境部署时,设置 `MCP_SERVER_URL` 环境变量指向你部署的 MCP 服务器。
