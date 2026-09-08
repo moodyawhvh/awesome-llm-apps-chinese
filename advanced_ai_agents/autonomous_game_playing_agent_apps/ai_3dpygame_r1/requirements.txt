@@ -1,0 +1,3 @@
+agno>=2.2.10
+browser-use==0.13.8
+streamlit
