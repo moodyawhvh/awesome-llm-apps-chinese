@@ -1,123 +1,125 @@
-# 🌐 Browser MCP Agent
+> 🌐 本文档由 [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 翻译,英文原版见原项目。
+
+# 🌐 浏览器 MCP 智能体
 
 https://github.com/user-attachments/assets/a01e09fa-131b-479a-8df3-2d1a61fd80f3
 
-A Streamlit application that allows you to browse and interact with websites using natural language commands through the Model Context Protocol (MCP) and [MCP-Agent](https://github.com/lastmile-ai/mcp-agent) with Playwright integration.
+一个 Streamlit 应用,让你通过 Model Context Protocol(MCP)和 [MCP-Agent](https://github.com/lastmile-ai/mcp-agent) 及 Playwright 集成,用自然语言命令浏览网页并与之交互。
 
-## Features
+## 功能特性
 
-- **Natural Language Interface**: Control a browser with simple English commands
-- **Full Browser Navigation**: Visit websites and navigate through pages
-- **Interactive Elements**: Click buttons, fill forms, and scroll through content
-- **Visual Feedback**: Take screenshots of webpage elements
-- **Information Extraction**: Extract and summarize content from webpages
-- **Multi-step Tasks**: Complete complex browsing sequences through conversation
+- **自然语言界面**:用简单的英文命令控制浏览器
+- **完整的浏览器导航**:访问网站、在页面间跳转
+- **交互元素**:点击按钮、填写表单、滚动内容
+- **可视化反馈**:对网页元素截图
+- **信息抽取**:提取并总结网页内容
+- **多步任务**:通过对话完成复杂的浏览序列
 
-## Setup
+## 环境配置
 
-### Requirements
+### 环境要求
 
 - Python 3.8+
-- Node.js and npm (for Playwright)
-  - This is a critical requirement! The app uses Playwright to control a headless browser
-  - Download and install from [nodejs.org](https://nodejs.org/)
-- OpenAI or Anthropic API Key
+- Node.js 和 npm(Playwright 需要)
+  - 这是硬性要求!应用使用 Playwright 控制无头浏览器
+  - 从 [nodejs.org](https://nodejs.org/) 下载安装
+- OpenAI 或 Anthropic API Key
 
-### Installation
+### 安装
 
-1. Clone this repository:
+1. 克隆本仓库:
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd mcp_ai_agents/browser_mcp_agent
    ```
 
-2. Install the required Python packages:
+2. 安装所需的 Python 包:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Verify Node.js and npm are installed:
+3. 确认 Node.js 和 npm 已安装:
    ```bash
    node --version
    npm --version
    ```
-   Both commands should return version numbers. If they don't, please install Node.js.
+   两条命令都应返回版本号,否则请先安装 Node.js。
 
-4. Set up your API keys. Pick **one** of:
+4. 配置 API Key,以下方式**二选一**:
 
-   **a) Via environment variable (simplest for OpenAI):**
+   **a) 通过环境变量(OpenAI 最简单):**
    ```bash
    export OPENAI_API_KEY=your-openai-api-key
    ```
 
-   **b) Via `mcp_agent.secrets.yaml` (required for Ollama / any custom base URL):**
+   **b) 通过 `mcp_agent.secrets.yaml`(Ollama 或任何自定义 base URL 必须用这种方式):**
    ```bash
    cp mcp_agent.secrets.yaml.example mcp_agent.secrets.yaml
-   # edit mcp_agent.secrets.yaml and put your key under openai.api_key
+   # 编辑 mcp_agent.secrets.yaml,把你的 key 填在 openai.api_key 下
    ```
 
-### Running with a local Ollama model
+### 使用本地 Ollama 模型运行
 
-Because `mcp-agent` talks to an OpenAI-compatible endpoint and Ollama exposes one at `http://localhost:11434/v1`, this agent runs against a local model with just config changes — no code edits or extra dependencies. See discussion in [#329](https://github.com/Shubhamsaboo/awesome-llm-apps/issues/329).
+`mcp-agent` 走的是 OpenAI 兼容端点,而 Ollama 在 `http://localhost:11434/v1` 恰好暴露了这样一个端点,所以只需改配置就能跑本地模型——不用改代码、不用加依赖。参见 [#329](https://github.com/Shubhamsaboo/awesome-llm-apps/issues/329) 的讨论。
 
-1. Install and start Ollama, then pull a tool-capable model:
+1. 安装并启动 Ollama,然后拉取一个支持工具调用的模型:
    ```bash
    ollama pull llama3.2
    ollama serve
    ```
 
-2. Edit `mcp_agent.config.yaml` and replace the `openai:` block with:
+2. 编辑 `mcp_agent.config.yaml`,把 `openai:` 块替换为:
    ```yaml
    openai:
      base_url: "http://localhost:11434/v1"
      default_model: "llama3.2"
    ```
 
-3. In `mcp_agent.secrets.yaml`, set any non-empty `api_key` (Ollama ignores it):
+3. 在 `mcp_agent.secrets.yaml` 中,把 `api_key` 设为任意非空值(Ollama 会忽略它):
    ```yaml
    openai:
      api_key: "ollama"
    ```
 
-4. Run as normal — `streamlit run main.py`. No `OPENAI_API_KEY` env var is required in this path.
+4. 正常运行——`streamlit run main.py`。这条路径不需要 `OPENAI_API_KEY` 环境变量。
 
-> Note: browser automation benefits from a reasoning-capable model. Smaller local models may struggle with multi-step Playwright tasks.
+> 注意:浏览器自动化依赖有推理能力的模型。较小的本地模型可能难以胜任多步 Playwright 任务。
 
-### Running the App
+### 运行应用
 
-1. Start the Streamlit app:
+1. 启动 Streamlit 应用:
    ```bash
    streamlit run main.py
    ```
 
-2. In the app interface:
-   - Enter your browsing command
-   - Click "Run Command"
-   - View the results and screenshots
+2. 在应用界面中:
+   - 输入浏览命令
+   - 点击 "Run Command"
+   - 查看结果和截图
 
-### Example Commands
+### 示例命令
 
-#### Basic Navigation
-- "Go to www.mcp-agent.com"
-- "Go back to the previous page"
+#### 基础导航
+- "打开 www.mcp-agent.com"
+- "返回上一页"
 
-#### Interaction
-- "Click on the login button"
-- "Scroll down to see more content"
+#### 页面交互
+- "点击登录按钮"
+- "往下滚动看更多内容"
 
-#### Content Extraction
-- "Summarize the main content of this page"
-- "Extract the navigation menu items"
-- "Take a screenshot of the hero section"
+#### 内容抽取
+- "总结这个页面的主要内容"
+- "提取导航菜单项"
+- "对首屏区域截图"
 
-#### Multi-step Tasks
-- "Go to the blog, find the most recent article, and summarize its key points"
+#### 多步任务
+- "去博客页面,找到最新文章,总结它的要点"
 
-## Architecture
+## 架构
 
-The application uses:
-- Streamlit for the user interface
-- MCP (Model Context Protocol) to connect the LLM with tools
-- Playwright for browser automation
-- [MCP-Agent](https://github.com/lastmile-ai/mcp-agent/) for the Agentic Framework
-- OpenAI's models to interpret commands and generate responses
+本应用使用:
+- Streamlit 构建用户界面
+- MCP(Model Context Protocol)连接 LLM 与工具
+- Playwright 做浏览器自动化
+- [MCP-Agent](https://github.com/lastmile-ai/mcp-agent/) 提供智能体框架
+- OpenAI 模型负责理解命令并生成回复
