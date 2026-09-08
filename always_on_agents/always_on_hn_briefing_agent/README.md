@@ -1,38 +1,40 @@
-# 📰 Always-on Hacker News Briefing Agent
+> 🌐 本文档由 [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 翻译,英文原版见原项目。
 
-AgentScout is an always-on Hacker News briefing agent built with Google ADK. It scans Hacker News for high-signal stories about AI agents, MCP, coding agents, workflow automation, and LLM apps, then turns the best links into a concise engineering brief.
+# 📰 常驻 Hacker News 简报智能体
 
-The app can run as an interactive ADK agent or as a scheduled backend service. Use ADK Web to ask for a brief manually, or run the FastAPI scheduler hook so Cloud Scheduler can trigger a daily Hacker News briefing and send it through Gmail, Slack, Linear, Jira, or an internal digest workflow.
+AgentScout 是一个基于 Google ADK 构建的常驻 Hacker News 简报智能体。它会扫描 Hacker News 上关于 AI 智能体、MCP、编码智能体、工作流自动化和 LLM 应用的高信噪比文章,并把最佳链接整理成一份精炼的工程简报。
 
-![Always-on Hacker News Briefing Agent architecture](assets/always-on-hn-briefing-agent.png)
+本应用既可以作为交互式 ADK 智能体运行,也可以作为定时后端服务运行。用 ADK Web 手动索取简报,或者跑起 FastAPI 调度钩子,让 Cloud Scheduler 每天触发一次 Hacker News 简报,并通过 Gmail、Slack、Linear、Jira 或内部摘要工作流发送。
 
-## Features
+![常驻 Hacker News 简报智能体架构](assets/always-on-hn-briefing-agent.png)
 
-- **Hacker News monitoring**: Finds AI agent, MCP, coding agent, automation, and LLM app stories from Hacker News.
-- **Signal ranking**: Scores stories by relevance, points, comments, and front-page position.
-- **Brief generation**: Produces a clean text and HTML briefing with summaries, links, and next actions.
-- **Google ADK agent**: Exposes a `root_agent` so users can request briefs in ADK Web.
-- **Scheduler-ready backend**: Includes HTTP and Pub/Sub endpoints for Cloud Scheduler or other automation systems.
-- **Gmail and webhook delivery**: Sends briefs through Gmail API or a generic webhook when `dry_run=false`.
-- **Safe delivery flow**: Defaults to dry-run mode and skips delivery unless credentials are explicitly configured.
+## 功能特性
 
-## How It Works
+- **Hacker News 监控**:从 Hacker News 找出 AI 智能体、MCP、编码智能体、自动化和 LLM 应用相关的文章。
+- **信噪比排序**:按相关性、点赞数、评论数和首页位置对文章打分。
+- **简报生成**:输出纯文本和 HTML 双版本简报,含摘要、链接和下一步行动。
+- **Google ADK 智能体**:暴露 `root_agent`,用户可在 ADK Web 中直接索取简报。
+- **调度友好的后端**:内置 HTTP 和 Pub/Sub 端点,适配 Cloud Scheduler 或其他自动化系统。
+- **Gmail 与 Webhook 投递**:`dry_run=false` 时通过 Gmail API 或通用 webhook 发送简报。
+- **安全的投递流程**:默认 dry-run 模式,未显式配置凭据绝不发送。
 
-1. AgentScout collects stories from deterministic sample data or the live Hacker News front page.
-2. It filters for AI agent and LLM app topics.
-3. It ranks the most useful stories for engineers and product builders.
-4. It renders a daily briefing in text and HTML.
-5. ADK Web, an HTTP trigger, or a Pub/Sub push endpoint returns the result.
-6. If delivery is enabled, the scheduler API sends the brief through Gmail or posts it to `AGENTSCOUT_WEBHOOK_URL`.
+## 工作原理
 
-## Requirements
+1. AgentScout 从确定性示例数据或 Hacker News 实时首页收集文章。
+2. 过滤出 AI 智能体与 LLM 应用相关主题。
+3. 对工程师和产品构建者最有用的文章进行排序。
+4. 渲染纯文本和 HTML 双版本的每日简报。
+5. 通过 ADK Web、HTTP 触发器或 Pub/Sub 推送端点返回结果。
+6. 如已启用投递,调度 API 通过 Gmail 发送简报,或 POST 到 `AGENTSCOUT_WEBHOOK_URL`。
+
+## 环境要求
 
 - Python 3.10+
-- Gemini API key for ADK Web
-- Optional Gmail OAuth credentials for direct email delivery
-- Optional webhook URL for Slack, Linear, Jira, GitHub Issues, SendGrid, or internal workflows
+- ADK Web 所需的 Gemini API Key
+- 可选:用于直接邮件投递的 Gmail OAuth 凭据
+- 可选:用于 Slack、Linear、Jira、GitHub Issues、SendGrid 或内部工作流的 webhook URL
 
-## Installation
+## 安装
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
@@ -41,47 +43,47 @@ pip install -r requirements.txt
 export GOOGLE_API_KEY="your_gemini_api_key"
 ```
 
-## Option 1: Run in ADK Web
+## 方式一:在 ADK Web 中运行
 
-Use ADK Web when you want to chat with the agent and ask for a brief manually.
+想跟智能体对话、手动索取简报时,用 ADK Web。
 
 ```bash
 adk web .
 ```
 
-Open the ADK Web UI and select `always_on_hn_briefing_agent`.
+打开 ADK Web UI,选择 `always_on_hn_briefing_agent`。
 
-Try prompts like:
+试试这样的提示词:
 
 ```text
-Give me today's AgentScout brief.
+给我今天的 AgentScout 简报。
 ```
 
 ```text
-Scout the top 3 Hacker News stories about AI agents and LLM apps.
+侦察一下 Hacker News 上关于 AI 智能体和 LLM 应用排名前 3 的文章。
 ```
 
 ```text
-Show me the highest-signal Hacker News items about MCP, coding agents, and workflow automation.
+给我看 Hacker News 上关于 MCP、编码智能体和工作流自动化信噪比最高的条目。
 ```
 
-## Option 2: Run the Scheduler API Locally
+## 方式二:本地运行调度 API
 
-Use the scheduler API when you want AgentScout to run like an always-on backend service. This is the same surface you can deploy behind Cloud Run and trigger from Cloud Scheduler.
+想让 AgentScout 像常驻后端服务一样运行时,用调度 API。这也是你部署到 Cloud Run 后、由 Cloud Scheduler 触发的同一套接口。
 
-Start the scheduler backend:
+启动调度后端:
 
 ```bash
 uvicorn scheduler_api:app --host 0.0.0.0 --port 8000
 ```
 
-In another terminal, preview a scheduled run without delivery:
+另开一个终端,预览一次不带投递的定时运行:
 
 ```bash
 curl "http://127.0.0.1:8000/agent-scout/dry-run?top_n=3&live=false"
 ```
 
-Trigger the scheduler path in dry-run mode:
+以 dry-run 模式触发调度路径:
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/agent-scout/trigger" \
@@ -89,15 +91,15 @@ curl -X POST "http://127.0.0.1:8000/agent-scout/trigger" \
   -d '{"dry_run": true, "top_n": 5, "live": false}'
 ```
 
-Dry-run mode returns the rendered brief and delivery status, but it does not send anything.
+dry-run 模式会返回渲染好的简报和投递状态,但不发送任何东西。
 
-Enable live Hacker News scanning for the current process:
+为当前进程启用 Hacker News 实时扫描:
 
 ```bash
 export AGENTSCOUT_LIVE_HN=true
 ```
 
-You can also override live mode per request:
+也可以按请求覆盖 live 模式:
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/agent-scout/trigger" \
@@ -105,19 +107,19 @@ curl -X POST "http://127.0.0.1:8000/agent-scout/trigger" \
   -d '{"dry_run": true, "top_n": 5, "live": true}'
 ```
 
-## Option 3: Enable Scheduled Delivery
+## 方式三:启用定时投递
 
-Delivery is opt-in. AgentScout will not send email or call a webhook unless the request body includes `"dry_run": false` and one delivery method is configured.
+投递是显式开启的。除非请求体包含 `"dry_run": false` 且配置了至少一种投递方式,AgentScout 不会发邮件或调用 webhook。
 
-Delivery mode behavior:
+投递模式行为:
 
-- `AGENTSCOUT_DELIVERY=gmail` sends through Gmail API.
-- `AGENTSCOUT_DELIVERY=webhook` posts to `AGENTSCOUT_WEBHOOK_URL`.
-- If `AGENTSCOUT_DELIVERY` is not set, AgentScout uses Gmail when Gmail is fully configured, otherwise webhook when a webhook URL is configured.
+- `AGENTSCOUT_DELIVERY=gmail` 通过 Gmail API 发送。
+- `AGENTSCOUT_DELIVERY=webhook` POST 到 `AGENTSCOUT_WEBHOOK_URL`。
+- 若未设置 `AGENTSCOUT_DELIVERY`,AgentScout 优先在 Gmail 配置齐全时用 Gmail,否则在配置了 webhook URL 时用 webhook。
 
-### Gmail Delivery
+### Gmail 投递
 
-Use Gmail when you want AgentScout to send the daily brief directly to an inbox. Create a Google OAuth client with Gmail API access, generate a refresh token with the `https://www.googleapis.com/auth/gmail.send` scope, then set:
+想让 AgentScout 把每日简报直接发进邮箱,用 Gmail。创建一个有 Gmail API 权限的 Google OAuth 客户端,用 `https://www.googleapis.com/auth/gmail.send` 权限范围生成 refresh token,然后设置:
 
 ```bash
 export AGENTSCOUT_DELIVERY="gmail"
@@ -132,11 +134,11 @@ curl -X POST "http://127.0.0.1:8000/agent-scout/trigger" \
   -d '{"dry_run": false, "top_n": 5, "live": true}'
 ```
 
-AgentScout sends a multipart email with both plain text and HTML versions of the brief.
+AgentScout 会发送一封 multipart 邮件,同时包含简报的纯文本和 HTML 版本。
 
-### Webhook Delivery
+### Webhook 投递
 
-Use webhook delivery when you want to route the brief to Slack, Linear, Jira, GitHub Issues, SendGrid, or your own internal workflow.
+想把简报路由到 Slack、Linear、Jira、GitHub Issues、SendGrid 或你自己的内部工作流,用 webhook 投递。
 
 ```bash
 export AGENTSCOUT_DELIVERY="webhook"
@@ -148,19 +150,19 @@ curl -X POST "http://127.0.0.1:8000/agent-scout/trigger" \
   -d '{"dry_run": false, "top_n": 5, "live": true}'
 ```
 
-The webhook receives `subject`, `text`, `html`, `stories`, and `next_actions`.
+webhook 会收到 `subject`、`text`、`html`、`stories` 和 `next_actions` 字段。
 
-## Cloud Scheduler Hook
+## Cloud Scheduler 钩子
 
-Deploy the scheduler API behind Cloud Run or another HTTP service, configure Gmail or webhook delivery in that environment, then call one of these endpoints from Cloud Scheduler.
+把调度 API 部署到 Cloud Run 或其他 HTTP 服务后面,在该环境中配置好 Gmail 或 webhook 投递,然后从 Cloud Scheduler 调用以下端点之一。
 
-Direct HTTP trigger:
+直接 HTTP 触发:
 
 ```text
 https://YOUR_CLOUD_RUN_URL/agent-scout/trigger
 ```
 
-Request body:
+请求体:
 
 ```json
 {
@@ -170,23 +172,23 @@ Request body:
 }
 ```
 
-Set `dry_run` to `true` while testing the schedule. Set it to `false` only after Gmail or webhook delivery is configured.
+测试定时任务时先把 `dry_run` 设为 `true`。只有在 Gmail 或 webhook 投递配置完成后才设为 `false`。
 
-Recommended weekday briefing schedule:
+推荐的工作日简报时间表:
 
 ```text
 0 9 * * 1-5
 ```
 
-Pub/Sub push endpoint:
+Pub/Sub 推送端点:
 
 ```text
 https://YOUR_CLOUD_RUN_URL/agent-scout/pubsub
 ```
 
-For Pub/Sub push, send the same JSON payload as base64-encoded message data.
+Pub/Sub 推送需把同样的 JSON 负载作为 base64 编码的消息数据发送。
 
-## Example Output
+## 输出示例
 
 ```json
 {
