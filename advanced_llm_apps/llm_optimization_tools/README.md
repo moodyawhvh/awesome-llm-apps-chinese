@@ -1,34 +1,36 @@
-# 🎯 LLM Optimization Tools
+> 🌐 本文档由 [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 翻译,英文原版见原项目。
 
-A collection of tools and techniques to optimize your LLM applications - reduce costs, improve performance, and maximize efficiency.
+# 🎯 LLM 优化工具
+
+一组用于优化 LLM 应用的工具与技术——降低成本、提升性能、把效率拉满。
 
 ---
 
-## 📚 Tools Available
+## 📚 可用工具
 
-### 🎯 [Toonify Token Optimization](toonify_token_optimization/)
+### 🎯 [Toonify Token 优化](toonify_token_optimization/)
 
-**Reduce LLM API costs by 30-60%** using TOON (Token-Oriented Object Notation) format.
+使用 TOON(Token-Oriented Object Notation,面向 Token 的对象表示法)格式,**降低 30-60% 的 LLM API 成本**。
 
-#### What it does:
-- Converts JSON data to compact TOON format
-- Reduces token usage significantly
-- Maintains data structure and readability
-- Saves money on API calls
+#### 功能:
+- 将 JSON 数据转换为紧凑的 TOON 格式
+- 大幅减少 token 用量
+- 保持数据结构与可读性
+- 直接省下 API 调用费用
 
-#### Key Features:
-- ✅ **63.9% average token reduction** vs JSON
-- ✅ **Up to 73.4% savings** for tabular data
-- ✅ Human-readable format
-- ✅ Roundtrip conversion (JSON ↔ TOON)
-- ✅ Schema validation support
-- ✅ Interactive Streamlit app
+#### 核心特性:
+- ✅ 相比 JSON **平均减少 63.9% 的 token**
+- ✅ 表格类数据**最高节省 73.4%**
+- ✅ 人类可读格式
+- ✅ 双向转换(JSON ↔ TOON)
+- ✅ 支持 Schema 校验
+- ✅ 交互式 Streamlit 应用
 
-#### Quick Example:
+#### 快速示例:
 ```python
 from toon import encode, decode
 
-# Your data (247 bytes as JSON)
+# 你的数据(JSON 下为 247 字节)
 data = {
   "products": [
     {"id": 101, "name": "Laptop Pro", "price": 1299},
@@ -36,151 +38,150 @@ data = {
   ]
 }
 
-# Convert to TOON (98 bytes - 60% reduction!)
+# 转成 TOON(98 字节 —— 直接省 60%!)
 toon_str = encode(data)
 # products[2]{id,name,price}:
 #   101,Laptop Pro,1299
 #   102,Magic Mouse,79
 
-# Pass to LLM with reduced cost
+# 用更低的成本把数据交给 LLM
 response = llm.complete(f"Analyze: {toon_str}")
 ```
 
-#### Use Cases:
-- 📊 Pass large datasets to LLMs
-- 💰 Reduce API costs significantly
-- 🔄 Optimize context window usage
-- 📈 Improve response times
+#### 适用场景:
+- 📊 向 LLM 传递大型数据集
+- 💰 显著降低 API 成本
+- 🔄 优化上下文窗口占用
+- 📈 缩短响应时间
 
-#### Get Started:
+#### 上手:
 ```bash
 cd toonify_token_optimization/
 pip install -r requirements.txt
 python quick_test.py
 ```
 
-**📖 [Full Documentation →](toonify_token_optimization/README.md)**
+**📖 [完整文档 →](toonify_token_optimization/README.md)**
 
 ---
 
-## 💡 Why Optimize?
+## 💡 为什么要优化?
 
-### Cost Savings
-LLM API costs are based on token count. Reducing tokens = saving money!
+### 省钱
+LLM API 按 token 数计费。减少 token = 省钱!
 
-**Example Savings (GPT-4)**:
-- 1,000 API calls: **$2.15 saved**
-- 100,000 API calls: **$214.70 saved**
-- 1M API calls: **$2,147.00 saved** 💰
+**节省示例(GPT-4)**:
+- 1,000 次 API 调用:**省 $2.15**
+- 100,000 次 API 调用:**省 $214.70**
+- 100 万次 API 调用:**省 $2,147.00** 💰
 
-### Performance
-Fewer tokens = faster processing and better efficiency.
+### 性能
+更少的 token = 更快的处理速度和更高的效率。
 
-### Context Window
-Maximize what you can fit in your context window by using compact formats.
-
----
-
-## 🎯 Best Practices
-
-### 1. Use Compact Formats for Structured Data
-When passing data to LLMs, use efficient serialization:
-- ✅ TOON for tabular/structured data
-- ✅ CSV for simple datasets
-- ❌ Avoid verbose JSON with excessive whitespace
-
-### 2. Optimize Prompts
-- Be concise and clear
-- Remove unnecessary examples
-- Use structured formats
-
-### 3. Batch Processing
-- Group similar requests
-- Reuse context when possible
-- Cache frequent responses
-
-### 4. Choose the Right Model
-- Use smaller models for simple tasks
-- Reserve GPT-4 for complex reasoning
-- Consider fine-tuned models
+### 上下文窗口
+用紧凑格式,让你的上下文窗口塞下更多内容。
 
 ---
 
-## 📊 Comparison Table
+## 🎯 最佳实践
 
-| Format | Size | Tokens | Cost (per 1M calls) | Best For |
+### 1. 结构化数据用紧凑格式
+向 LLM 传数据时,使用高效的序列化方式:
+- ✅ 表格/结构化数据用 TOON
+- ✅ 简单数据集用 CSV
+- ❌ 避免带大量空白的冗长 JSON
+
+### 2. 优化提示词
+- 表述简洁清晰
+- 删掉不必要的示例
+- 使用结构化格式
+
+### 3. 批处理
+- 合并相似请求
+- 尽可能复用上下文
+- 缓存高频响应
+
+### 4. 选对模型
+- 简单任务用小模型
+- GPT-4 留给复杂推理
+- 考虑微调模型
+
+---
+
+## 📊 对比表
+
+| 格式 | 大小 | Token 数 | 成本(每 100 万次调用) | 最适合 |
 |--------|------|--------|---------------------|----------|
-| **JSON (verbose)** | 247 B | 85 | $2,550 | Compatibility |
-| **JSON (compact)** | 189 B | 67 | $2,010 | Standard use |
-| **TOON** | 98 B | 39 | $1,170 | Structured data |
-| **CSV** | 112 B | 42 | $1,260 | Simple tables |
+| **JSON(冗长)** | 247 B | 85 | $2,550 | 兼容性 |
+| **JSON(紧凑)** | 189 B | 67 | $2,010 | 常规使用 |
+| **TOON** | 98 B | 39 | $1,170 | 结构化数据 |
+| **CSV** | 112 B | 42 | $1,260 | 简单表格 |
 
-*Based on GPT-4 pricing ($0.03/1K input tokens)*
-
----
-
-## 🚀 Future Tools (Coming Soon)
-
-### Planned Additions:
-
-#### 📦 Prompt Compression
-Automatically compress long prompts while preserving meaning.
-
-#### 🗜️ Context Optimization
-Smart context window management for long conversations.
-
-#### 📈 Token Analytics
-Track and analyze token usage across your applications.
-
-#### 💾 Response Caching
-Intelligent caching to avoid redundant API calls.
+*基于 GPT-4 定价($0.03/1K 输入 token)*
 
 ---
 
-## 🤝 Contributing
+## 🚀 未来工具(即将推出)
 
-Have an optimization technique to share? We'd love to include it!
+### 计划新增:
 
-**How to contribute:**
-1. Fork the repository
-2. Create a new folder for your tool
-3. Include README, code, and examples
-4. Submit a pull request
+#### 📦 提示词压缩
+在保留语义的前提下自动压缩长提示词。
 
-**Guidelines:**
-- Must significantly reduce costs or improve performance
-- Include benchmarks and comparisons
-- Provide clear documentation
-- Add usage examples
+#### 🗜️ 上下文优化
+面向长对话的智能上下文窗口管理。
 
----
+#### 📈 Token 分析
+追踪并分析各应用的 token 用量。
 
-## 📖 Additional Resources
-
-### Learning Resources
-- [LLM Token Basics](https://platform.openai.com/tokenizer)
-- [Cost Optimization Guide](https://openai.com/pricing)
-- [Best Practices for Production](https://platform.openai.com/docs/guides/production-best-practices)
-
-### Related Projects
-- [TOON Format Spec](https://github.com/toon-format/toon)
-- [Toonify Library](https://github.com/ScrapeGraphAI/toonify)
+#### 💾 响应缓存
+智能缓存,避免重复的 API 调用。
 
 ---
 
-## 💬 Support
+## 🤝 参与贡献
 
-- 📧 Questions? Open an issue on GitHub
-- 💡 Suggestions? We're always looking for new optimization techniques!
-- 🌟 Find this useful? Star the repository!
+有想分享的优化技术?欢迎加入!
+
+**贡献方式:**
+1. Fork 仓库
+2. 为你的工具新建文件夹
+3. 附上 README、代码和示例
+4. 提交 Pull Request
+
+**要求:**
+- 必须能显著降本或提速
+- 附上基准测试与对比数据
+- 文档清晰
+- 提供用法示例
 
 ---
 
-## 📄 License
+## 📖 更多资源
 
-Tools in this collection may have different licenses. Check each tool's folder for specific license information.
+### 学习资源
+- [LLM Token 基础](https://platform.openai.com/tokenizer)
+- [成本优化指南](https://openai.com/pricing)
+- [生产环境最佳实践](https://platform.openai.com/docs/guides/production-best-practices)
+
+### 相关项目
+- [TOON 格式规范](https://github.com/toon-format/toon)
+- [Toonify 库](https://github.com/ScrapeGraphAI/toonify)
 
 ---
 
-**Save money, go faster, build better! 🚀💰**
+## 💬 支持
 
+- 📧 有疑问?在 GitHub 上提 Issue
+- 💡 有建议?我们一直在寻找新的优化技术!
+- 🌟 觉得有用?给仓库点个 Star!
+
+---
+
+## 📄 许可证
+
+本合集内各工具可能采用不同的许可证,具体请查看各工具文件夹中的许可信息。
+
+---
+
+**省钱,提速,构建更好的应用!🚀💰**
