@@ -1,209 +1,211 @@
-# 🚀 OpenAI Agents SDK Crash Course
+> 🌐 本文档由 [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 翻译,英文原版见原项目。
 
-A comprehensive tutorial series for learning OpenAI's Agents SDK from basics to advanced concepts. This crash course is designed to take you from zero to hero in building AI agents with the OpenAI Agents SDK.
+# 🚀 OpenAI Agents SDK 速成课
 
-## 📚 What is OpenAI Agents SDK?
+一套从基础到进阶、系统学习 OpenAI Agents SDK 的完整教程系列。本速成课的目标是让你从零开始,成长为能独立用 OpenAI Agents SDK 构建 AI 智能体的开发者。
 
-OpenAI Agents SDK is a powerful framework for **developing and deploying AI agents**. It provides:
+## 📚 什么是 OpenAI Agents SDK?
 
-### Key Features:
-- **Agent Orchestration**: Create and manage intelligent AI agents
-- **Tool Integration**: Extend agents with custom and built-in tools
-- **Structured Outputs**: Type-safe responses using Pydantic models
-- **Multi-Agent Workflows**: Coordinate multiple agents with handoffs
-- **Real-time Execution**: Sync, async, and streaming execution methods
-- **Voice Integration**: Static, streaming, and realtime voice capabilities
-- **Session Management**: Automatic conversation memory and history
-- **Production Ready**: Built-in tracing, guardrails, and monitoring
+OpenAI Agents SDK 是一个强大的 **AI 智能体开发与部署框架**,它提供:
 
-## 🎯 Learning Path
+### 核心特性:
+- **智能体编排**:创建和管理智能 AI 智能体
+- **工具集成**:用自定义工具和内置工具扩展智能体
+- **结构化输出**:基于 Pydantic 模型的类型安全响应
+- **多智能体工作流**:通过 handoff(交接)机制协调多个智能体
+- **实时执行**:同步、异步与流式三种执行方式
+- **语音集成**:静态、流式与实时语音能力
+- **会话管理**:自动维护对话记忆与历史
+- **生产就绪**:内置追踪、护栏与监控
 
-This crash course covers the essential concepts of OpenAI Agents SDK through hands-on tutorials:
+## 🎯 学习路径
 
-### 📚 **Tutorials**
+本速成课通过动手教程覆盖 OpenAI Agents SDK 的核心概念:
 
-#### **🌱 Foundation Layer**
+### 📚 **教程列表**
 
-1. **[1_starter_agent](./1_starter_agent/README.md)** - Your first OpenAI agent
-   - Basic agent creation and configuration
-   - Understanding different execution methods
-   - Simple text processing and responses
+#### **🌱 基础层**
 
-2. **[2_structured_output_agent](./2_structured_output_agent/README.md)** - Type-safe responses
-   - **Support Ticket Agent** - Convert complaints to structured tickets
-   - **Product Review Agent** - Extract structured data from reviews
-   - Pydantic models and validation
+1. **[1_starter_agent(入门智能体)](./1_starter_agent/README.md)** - 你的第一个 OpenAI 智能体
+   - 基础智能体的创建与配置
+   - 理解不同的执行方式
+   - 简单的文本处理与响应
 
-#### **🔧 Core Capabilities Layer**
+2. **[2_structured_output_agent(结构化输出智能体)](./2_structured_output_agent/README.md)** - 类型安全的响应
+   - **客服工单智能体** - 把投诉转化为结构化工单
+   - **商品评论智能体** - 从评论中提取结构化数据
+   - Pydantic 模型与数据校验
 
-3. **[3_tool_using_agent](./3_tool_using_agent/README.md)** - Agent tools & functions
-   - Custom function tools with `@function_tool`
-   - Built-in tools (WebSearch, CodeInterpreter, FileSearch)
-   - Tool integration and execution patterns
+#### **🔧 核心能力层**
 
-4. **[4_running_agents](./4_running_agents/README.md)** - Running & execution mastery
-   - The agent loop: LLM calls, tool execution, handoffs
-   - Sync, async, and streaming execution methods  
-   - Advanced streaming events and exception handling
-   - Run configuration and conversation management
+3. **[3_tool_using_agent(工具调用智能体)](./3_tool_using_agent/README.md)** - 智能体工具与函数
+   - 用 `@function_tool` 定义自定义函数工具
+   - 内置工具(WebSearch、CodeInterpreter、FileSearch)
+   - 工具集成与执行模式
 
-5. **[5_context_management](./5_context_management/README.md)** - State & context handling
-   - Context passing between runs
-   - State persistence and management
-   - Conversation flow control
+4. **[4_running_agents(运行智能体)](./4_running_agents/README.md)** - 运行与执行精通
+   - 智能体循环:LLM 调用、工具执行、handoff
+   - 同步、异步与流式执行方式
+   - 高级流式事件与异常处理
+   - 运行配置与对话管理
 
-#### **🧠 Advanced Features Layer**
+5. **[5_context_management(上下文管理)](./5_context_management/README.md)** - 状态与上下文处理
+   - 跨运行传递上下文
+   - 状态持久化与管理
+   - 对话流程控制
 
-6. **[6_guardrails_validation](./6_guardrails_validation/README.md)** - Safety & validation
-   - Input guardrails for user validation
-   - Output guardrails for response filtering
-   - Custom business rule validation
+#### **🧠 进阶特性层**
 
-7. **[7_sessions](./7_sessions/README.md)** - Sessions & memory management
-   - Automatic conversation history with SQLiteSession
-   - Memory operations and conversation corrections
-   - Multiple session management and organization
+6. **[6_guardrails_validation(护栏与校验)](./6_guardrails_validation/README.md)** - 安全与校验
+   - 用于用户输入校验的输入护栏
+   - 用于响应过滤的输出护栏
+   - 自定义业务规则校验
 
-#### **🤝 Multi-Agent Layer**
+7. **[7_sessions(会话)](./7_sessions/README.md)** - 会话与记忆管理
+   - 用 SQLiteSession 自动维护对话历史
+   - 记忆操作与对话修正
+   - 多会话的管理与组织
 
-8. **[8_handoffs_delegation](./8_handoffs_delegation/README.md)** - Agent handoffs & delegation
-   - Agent-to-agent task delegation
-   - Triage systems and smart routing
-   - Advanced handoff configuration with callbacks
+#### **🤝 多智能体层**
 
-9. **[9_multi_agent_orchestration](./9_multi_agent_orchestration/README.md)** - Complex workflows
-   - Parallel agent execution with `asyncio.gather()`
-   - Agents as tools orchestration patterns
-   - Multi-stage workflow coordination
+8. **[8_handoffs_delegation(交接与委派)](./8_handoffs_delegation/README.md)** - 智能体交接与委派
+   - 智能体之间的任务委派
+   - 分诊系统与智能路由
+   - 带回调的高级 handoff 配置
 
-#### **🔍 Production Layer**
+9. **[9_multi_agent_orchestration(多智能体编排)](./9_multi_agent_orchestration/README.md)** - 复杂工作流
+   - 用 `asyncio.gather()` 并行执行智能体
+   - "智能体即工具"的编排模式
+   - 多阶段工作流协调
 
-10. **[10_tracing_observability](./10_tracing_observability/README.md)** - Monitoring & debugging
-    - Built-in tracing and execution visualization
-    - Custom traces and spans for complex workflows
-    - Performance monitoring and optimization
+#### **🔍 生产层**
 
-#### **🎙️ Voice & Advanced Features**
+10. **[10_tracing_observability(追踪与可观测性)](./10_tracing_observability/README.md)** - 监控与调试
+    - 内置追踪与执行可视化
+    - 为复杂工作流自定义 trace 和 span
+    - 性能监控与优化
 
-11. **[11_voice](./11_voice/README.md)** - Voice agents & real-time conversation
-    - Static voice processing (turn-based interaction)
-    - Streaming voice processing (real-time conversation)
-    - Realtime voice agents (ultra-low latency with WebSocket)
-    - Speech-to-text, text-to-speech, and voice pipelines
+#### **🎙️ 语音与进阶特性**
 
-## 🛠️ Prerequisites
+11. **[11_voice(语音)](./11_voice/README.md)** - 语音智能体与实时对话
+    - 静态语音处理(轮次式交互)
+    - 流式语音处理(实时对话)
+    - 实时语音智能体(基于 WebSocket 的超低延迟)
+    - 语音转文字、文字转语音与语音流水线
 
-Before starting this crash course, ensure you have:
+## 🛠️ 前置条件
 
-- **Python 3.8+** installed (Python 3.9+ required for voice features)
-- **OpenAI API Key** from [OpenAI Platform](https://platform.openai.com/api-keys)
-- Basic understanding of Python and APIs
-- Familiarity with async/await concepts (helpful but not required)
-- **For voice tutorials**: Microphone and speakers/headphones
+开始本速成课前,请确保:
 
-## 📖 How to Use This Course
+- 已安装 **Python 3.8+**(语音功能需要 Python 3.9+)
+- 已从 [OpenAI 平台](https://platform.openai.com/api-keys)获取 **OpenAI API Key**
+- 具备 Python 和 API 的基础知识
+- 了解 async/await 概念(有帮助但非必需)
+- **语音教程**:需要麦克风和扬声器/耳机
 
-Each tutorial follows a consistent structure:
+## 📖 如何使用本课程
 
-- **README.md**: Concept explanation and learning objectives
-- **Python files**: Contains the agent implementations and examples
-- **Interactive interfaces**: Streamlit web apps for hands-on testing
-- **Submodules**: Organized examples for different concepts
-- **requirements.txt**: Dependencies for the tutorial
-- **env.example**: Environment variable template
+每个教程遵循统一的结构:
 
-### Learning Approach:
-1. **Read the README** to understand the concept
-2. **Examine the code** to see the implementation
-3. **Run the examples** to see agents in action
-4. **Experiment** by modifying the code
-5. **Use interactive interfaces** for hands-on testing
-6. **Try voice features** (tutorial 11) with your microphone
-7. **Move to the next tutorial** when ready
+- **README.md**:概念讲解与学习目标
+- **Python 文件**:包含智能体实现与示例
+- **交互界面**:用于动手测试的 Streamlit 网页应用
+- **子模块**:按概念组织的示例
+- **requirements.txt**:本教程的依赖
+- **env.example**:环境变量模板
 
-## 🎯 Tutorial Features
+### 学习方法:
+1. **阅读 README** 理解概念
+2. **阅读代码** 看具体实现
+3. **运行示例** 观察智能体的实际表现
+4. **动手实验** 修改代码
+5. **使用交互界面** 做动手测试
+6. **用麦克风体验语音功能**(教程 11)
+7. **准备好后进入下一课**
 
-Each tutorial includes:
-- ✅ **Clear concept explanation**
-- ✅ **Minimal, working code examples**
-- ✅ **Real-world use cases**
-- ✅ **Step-by-step instructions**
-- ✅ **Interactive web interfaces**
-- ✅ **Best practices and tips**
+## 🎯 教程特色
 
-## 🚀 Quick Start
+每个教程都包含:
+- ✅ **清晰的概念讲解**
+- ✅ **精简可运行的代码示例**
+- ✅ **真实场景用例**
+- ✅ **分步操作指引**
+- ✅ **交互式网页界面**
+- ✅ **最佳实践与技巧**
 
-1. **Clone the repository** and navigate to this directory
-2. **Choose a tutorial** from the list above
-3. **Follow the README** instructions for that tutorial
-4. **Install dependencies**: `pip install -r requirements.txt`
-5. **Set up environment**: Copy `env.example` to `.env` and add your API key
-6. **Run the examples** and start learning!
+## 🚀 快速开始
 
-## 🔧 Environment Setup
+1. **克隆仓库** 并进入本目录
+2. **从上面的列表选择一个教程**
+3. **按该教程的 README** 指引操作
+4. **安装依赖**:`pip install -r requirements.txt`
+5. **配置环境**:把 `env.example` 复制为 `.env` 并填入你的 API Key
+6. **运行示例**,开始学习!
 
-Each tutorial requires an OpenAI API key. Create a `.env` file in each tutorial directory:
+## 🔧 环境配置
+
+每个教程都需要 OpenAI API Key。在各自教程目录下创建 `.env` 文件:
 
 ```bash
 OPENAI_API_KEY=sk-your_openai_key_here
 ```
 
-Get your API key from: [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+API Key 获取地址:[https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 
-## 💡 Learning Tips
+## 💡 学习建议
 
-- **Start Sequential**: Follow tutorials in order for best learning experience
-- **Experiment Freely**: Modify code and see what happens
-- **Use Web Interfaces**: Interactive apps make learning more engaging
-- **Read Error Messages**: They often contain helpful guidance
-- **Join Community**: Engage with other learners and share experiences
+- **按顺序学**:依序学习可获得最佳学习效果
+- **大胆实验**:修改代码,观察会发生什么
+- **多用网页界面**:交互式应用让学习更有代入感
+- **认真读报错**:错误信息往往包含有用的指引
+- **加入社区**:与其他学习者交流、分享经验
 
-## 🚨 Common Issues
+## 🚨 常见问题
 
-### API Key Problems
-- Make sure your `.env` file is in the tutorial directory
-- Verify your API key is valid and has sufficient credits
-- Check for typos in the environment variable name
+### API Key 问题
+- 确认 `.env` 文件位于教程目录下
+- 确认 API Key 有效且有足够额度
+- 检查环境变量名有没有拼写错误
 
-### Import Errors
-- Ensure you've installed requirements: `pip install -r requirements.txt`
-- Check that you're using Python 3.8 or higher
-- Try creating a virtual environment if you have conflicts
+### 导入错误
+- 确认已安装依赖:`pip install -r requirements.txt`
+- 确认使用的是 Python 3.8 或更高版本
+- 如有环境冲突,尝试创建虚拟环境
 
-### Rate Limiting
-- OpenAI has rate limits based on your plan
-- If you hit limits, wait a moment before trying again
-- Consider upgrading your OpenAI plan for higher limits
+### 限流
+- OpenAI 按你的套餐设有速率限制
+- 触发限流时稍等片刻再试
+- 如需更高额度,可升级 OpenAI 套餐
 
-## 📚 Additional Resources
+## 📚 更多资源
 
-- [OpenAI Agents SDK Documentation](https://openai.github.io/openai-agents-python/)
-- [OpenAI Platform](https://platform.openai.com/)
-- [Pydantic Documentation](https://docs.pydantic.dev/)
-- [Streamlit Documentation](https://docs.streamlit.io/)
+- [OpenAI Agents SDK 官方文档](https://openai.github.io/openai-agents-python/)
+- [OpenAI 平台](https://platform.openai.com/)
+- [Pydantic 文档](https://docs.pydantic.dev/)
+- [Streamlit 文档](https://docs.streamlit.io/)
 
-## 🤝 Contributing
+## 🤝 参与贡献
 
-Feel free to contribute improvements, bug fixes, or additional tutorials. Each tutorial should:
-- Be self-contained and runnable
-- Include clear documentation
-- Follow the established structure
-- Use minimal, understandable code
+欢迎提交改进、修复 Bug 或补充新教程。每个教程应满足:
+- 自包含、可直接运行
+- 文档清晰
+- 遵循既有结构
+- 代码精简、易懂
 
-## 📊 Progress Tracking
+## 📊 学习进度追踪
 
-Track your progress through the course:
+记录你在课程中的进度:
 
-- [ ] **Tutorial 1**: Basic agent creation ✨
-- [ ] **Tutorial 2**: Structured outputs with Pydantic
-- [ ] **Tutorial 3**: Tool integration and custom functions
-- [ ] **Tutorial 4**: Execution methods mastery
-- [ ] **Tutorial 5**: Context and state management
-- [ ] **Tutorial 6**: Guardrails and validation
-- [ ] **Tutorial 7**: Sessions and memory management
-- [ ] **Tutorial 8**: Agent handoffs and delegation
-- [ ] **Tutorial 9**: Multi-agent orchestration
-- [ ] **Tutorial 10**: Tracing and observability
-- [ ] **Tutorial 11**: Voice agents and real-time conversation 🎯
+- [ ] **教程 1**:创建基础智能体 ✨
+- [ ] **教程 2**:用 Pydantic 做结构化输出
+- [ ] **教程 3**:工具集成与自定义函数
+- [ ] **教程 4**:精通执行方式
+- [ ] **教程 5**:上下文与状态管理
+- [ ] **教程 6**:护栏与校验
+- [ ] **教程 7**:会话与记忆管理
+- [ ] **教程 8**:智能体交接与委派
+- [ ] **教程 9**:多智能体编排
+- [ ] **教程 10**:追踪与可观测性
+- [ ] **教程 11**:语音智能体与实时对话 🎯
 
-Happy learning! 🚀
+祝学习愉快!🚀
