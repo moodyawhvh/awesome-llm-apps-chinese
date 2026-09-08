@@ -1,8 +1,9 @@
 /**
- * CopilotKit API route with MCP Apps middleware.
- * Connects to the travel booking MCP server and enables UI-enabled tools.
+ * CopilotKit API 路由,集成 MCP Apps 中间件。
+ * 连接差旅预订 MCP 服务器,启用带 UI 的工具。
+ * (中文注释由 awesome-llm-apps-chinese 汉化项目添加)
  *
- * Reference: v2.x/apps/react/demo/src/app/api/copilotkit-mcp/[[...slug]]/route.ts
+ * 参考: v2.x/apps/react/demo/src/app/api/copilotkit-mcp/[[...slug]]/route.ts
  */
 
 import {
@@ -14,7 +15,7 @@ import {
 import { handle } from "hono/vercel";
 import { MCPAppsMiddleware } from "@ag-ui/mcp-apps-middleware";
 
-// Determine which LLM model to use based on available API keys
+// 根据可用的 API Key 决定使用哪个 LLM 模型
 const determineModel = () => {
   if (process.env.OPENAI_API_KEY?.trim()) {
     return "openai/gpt-5.5";
@@ -28,7 +29,7 @@ const determineModel = () => {
   return "openai/gpt-5.5";
 };
 
-// Create the agent with multi-app assistant persona and MCP Apps middleware
+// 创建智能体:多应用助手人设 + MCP Apps 中间件
 const agent = new BuiltInAgent({
   model: determineModel(),
   prompt: `You are an AI assistant with access to 4 interactive apps that render in the chat. Each app provides a rich UI for specific tasks.
@@ -75,7 +76,7 @@ Create task boards with drag-drop cards and columns.
   }),
 );
 
-// Create CopilotKit runtime
+// 创建 CopilotKit 运行时
 const runtime = new CopilotRuntime({
   agents: {
     default: agent,
@@ -83,7 +84,7 @@ const runtime = new CopilotRuntime({
   runner: new InMemoryAgentRunner(),
 });
 
-// Create Hono endpoint
+// 创建 Hono 端点
 const app = createCopilotEndpoint({
   runtime,
   basePath: "/api/copilotkit",

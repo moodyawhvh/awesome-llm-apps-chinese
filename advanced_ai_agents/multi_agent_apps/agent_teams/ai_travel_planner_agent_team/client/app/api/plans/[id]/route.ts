@@ -1,6 +1,8 @@
+// 中文注释由 awesome-llm-apps-chinese 汉化项目添加
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+// GET /api/plans/[id]:按 ID 查询单个行程计划,连同状态与输出一起返回
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
@@ -8,6 +10,7 @@ export async function GET(
   try {
     const { id } = await params;
 
+    // 查询行程计划,同时关联加载 status(状态)与 output(输出)
     const tripPlan = await prisma.tripPlan.findUnique({
       where: { id },
       include: {
@@ -52,7 +55,7 @@ export async function DELETE(
   try {
     const { id } = params;
 
-    // First check if the plan exists
+    // 先确认行程计划是否存在
     const tripPlan = await prisma.tripPlan.findUnique({
       where: { id },
     });
@@ -67,7 +70,7 @@ export async function DELETE(
       );
     }
 
-    // Delete related records first (status and output)
+    // 先删除关联记录(status 与 output),再删除行程计划本身
     await prisma.tripPlanStatus.deleteMany({
       where: { tripPlanId: id },
     });
@@ -76,7 +79,7 @@ export async function DELETE(
       where: { tripPlanId: id },
     });
 
-    // Delete the trip plan
+    // 删除行程计划
     await prisma.tripPlan.delete({
       where: { id },
     });
