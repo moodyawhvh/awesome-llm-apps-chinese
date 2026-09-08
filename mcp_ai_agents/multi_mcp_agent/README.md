@@ -1,125 +1,127 @@
-# 🚀 Multi-MCP Intelligent Assistant
+> 🌐 本文档由 [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 翻译,英文原版见原项目。
 
-The Multi-MCP Intelligent Assistant is a powerful productivity tool that integrates multiple Model Context Protocol (MCP) servers to provide seamless access to GitHub, Perplexity, Calendar, and Gmail services through natural language interactions. This advanced AI assistant is powered by Agno's AI Agent framework and designed to be a productivity multiplier across your digital workspace.
+# 🚀 多 MCP 智能助手
 
-## Features
+多 MCP 智能助手是一个强大的效率工具,它整合了多个 Model Context Protocol(MCP)服务器,让你通过自然语言交互无缝访问 GitHub、Perplexity、日历和 Gmail 服务。这款高级 AI 助手由 Agno 的 AI Agent 框架驱动,是你数字工作空间里的效率倍增器。
 
-- **Multi-Agent System**
-    - **GitHub Integration**: Complete repository management, issue tracking, and code analysis
-    - **Perplexity Research**: Real-time web search and information gathering
-    - **Calendar Management**: Event scheduling and meeting coordination
-    - **Gmail Integration**: Email management and communication workflows
+## 功能特性
 
-- **Core Capabilities**:
-  - Repository management (create, clone, fork, search)
-  - Issue & PR workflow (create, update, review, merge, comment)
-  - Real-time web search and research
-  - Event scheduling and availability management
-  - Email organization and automated responses
-  - Cross-platform workflow automation
+- **多智能体系统**
+    - **GitHub 集成**:完整的仓库管理、Issue 跟踪和代码分析
+    - **Perplexity 研究**:实时联网搜索与信息收集
+    - **日历管理**:日程安排与会议协调
+    - **Gmail 集成**:邮件管理与沟通工作流
 
-- **Advanced Features**:
-  - Interactive CLI with streaming responses
-  - Conversation memory and context retention
-  - Tool chaining for complex workflows
-  - Session-specific user and session IDs
-  - Markdown-formatted responses
-  - Proactive workflow suggestions
+- **核心能力**:
+  - 仓库管理(创建、克隆、fork、搜索)
+  - Issue 与 PR 工作流(创建、更新、评审、合并、评论)
+  - 实时联网搜索与调研
+  - 日程安排与空闲时段管理
+  - 邮件整理与自动回复
+  - 跨平台工作流自动化
 
-- **Productivity Focus**:
-  - Cross-platform automation (GitHub issues → Calendar events)
-  - Research-driven development workflows
-  - Project management integration
-  - Documentation and knowledge sharing
+- **进阶特性**:
+  - 带流式响应的交互式 CLI
+  - 对话记忆与上下文保持
+  - 面向复杂工作流的工具链式调用
+  - 会话级专属用户与会话 ID
+  - Markdown 格式的回复
+  - 主动式工作流建议
 
-## How to Run
+- **效率导向**:
+  - 跨平台自动化(GitHub Issue → 日历事件)
+  - 研究驱动的开发工作流
+  - 项目管理集成
+  - 文档与知识共享
 
-Follow these steps to set up and run the application:
+## 如何运行
 
-1. **Clone the Repository**:
+按以下步骤配置并运行应用:
+
+1. **克隆仓库**:
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd awesome-llm-apps/mcp_ai_agents/multi_mcp_agent
    ```
 
-2. **Install the dependencies**:
+2. **安装依赖**:
     ```bash
     pip install -r requirements.txt
     ```
 
-3. **Verify Node.js installation** (required for MCP servers):
+3. **确认 Node.js 已安装**(MCP 服务器必需):
     ```bash
     node --version
     npm --version
     npx --version
     ```
-    If Node.js is not installed, download it from [nodejs.org](https://nodejs.org/)
+    如果没有安装 Node.js,请从 [nodejs.org](https://nodejs.org/) 下载
 
-4. **Set up your API keys**:
-    Create a `.env` file in the project directory with the following variables:
+4. **配置 API Key**:
+    在项目目录下创建 `.env` 文件,写入以下变量:
     ```env
     OPENAI_API_KEY=your-openai-api-key
     GITHUB_PERSONAL_ACCESS_TOKEN=your-github-token
     PERPLEXITY_API_KEY=your-perplexity-api-key
     ```
 
-    - Get an OpenAI API key from: https://platform.openai.com/api-keys
-    - Get a GitHub Personal Access Token from: https://github.com/settings/tokens (with `repo`, `user`, and `admin:org` scopes)
-    - Get a Perplexity API key from: https://www.perplexity.ai/
-    - Configure OpenAI MCP Headers according to your setup requirements
+    - OpenAI API Key 获取地址:https://platform.openai.com/api-keys
+    - GitHub Personal Access Token 获取地址:https://github.com/settings/tokens(需勾选 `repo`、`user` 和 `admin:org` 权限范围)
+    - Perplexity API Key 获取地址:https://www.perplexity.ai/
+    - 按你的实际需求配置 OpenAI MCP 请求头
 
-5. **Run the Multi-MCP Agent**:
+5. **运行多 MCP 智能体**:
     ```bash
     python multi_mcp_agent.py
     ```
 
-6. **Start Interacting**:
-    - The assistant will validate your environment variables
-    - Generate unique user and session IDs
-    - Initialize connections to all MCP servers
-    - Start the interactive CLI interface
+6. **开始交互**:
+    - 助手会校验你的环境变量
+    - 生成唯一的用户与会话 ID
+    - 初始化到所有 MCP 服务器的连接
+    - 启动交互式 CLI 界面
 
-## Usage
+## 使用方法
 
-1. **Environment Validation**: The assistant automatically checks for all required API keys and environment variables
-2. **Session Management**: Each session gets unique user and session IDs for tracking and context
-3. **Interactive Commands**: Use natural language to interact with integrated services:
+1. **环境校验**:助手自动检查所有必需的 API Key 和环境变量
+2. **会话管理**:每个会话都有唯一的用户与会话 ID,用于追踪和上下文管理
+3. **交互式命令**:用自然语言与集成的服务交互:
 
-### Example Commands
+### 示例命令
 
-**GitHub Operations**:
-- "Show my recent GitHub repositories"
-- "Create a new issue in my project repo"
-- "Search for Python code in my repositories"
-- "Review the latest pull requests"
+**GitHub 操作**:
+- "看看我最近的 GitHub 仓库"
+- "在我的项目仓库里建一个新 issue"
+- "在我的仓库里搜索 Python 代码"
+- "评审一下最新的 pull request"
 
-**Research & Information**:
-- "Search for the latest AI developments"
-- "What are the trending topics in machine learning?"
-- "Find documentation for FastAPI"
-- "Research best practices for microservices"
+**调研与信息**:
+- "搜索最新的 AI 动态"
+- "机器学习领域现在有哪些热门话题?"
+- "帮我找 FastAPI 的文档"
+- "调研一下微服务的最佳实践"
 
-**Calendar Management**:
-- "Schedule a meeting for next week"
-- "Show my upcoming appointments"
-- "Find available time slots for a 2-hour meeting"
+**日历管理**:
+- "下周安排一个会议"
+- "看看我即将到来的日程"
+- "帮我找一个 2 小时会议的空闲时段"
 
-**Cross-Platform Workflows**:
-- "Create a GitHub issue and schedule a follow-up meeting"
-- "Research a topic and create a summary document"
-- "Find trending repositories and add them to my watchlist"
+**跨平台工作流**:
+- "建一个 GitHub issue 并安排一次跟进会议"
+- "调研一个主题并生成摘要文档"
+- "找找热门仓库并加进我的关注列表"
 
-4. **Session Control**: Type 'exit', 'quit', or 'bye' to end the session
+4. **会话控制**:输入 'exit'、'quit' 或 'bye' 结束会话
 
-## Architecture
+## 架构
 
-The Multi-MCP Agent leverages:
-- **Agno Framework**: For agent orchestration and tool management
-- **OpenAI GPT-4o**: As the core language model
-- **MCP Servers**: For external service integrations
-- **Async Architecture**: For efficient concurrent operations
-- **Memory System**: For context retention and conversation history
+多 MCP 智能体使用了:
+- **Agno 框架**:智能体编排与工具管理
+- **OpenAI GPT-4o**:核心语言模型
+- **MCP 服务器**:外部服务集成
+- **异步架构**:高效并发操作
+- **记忆系统**:上下文保持与对话历史
 
-## Note
+## 说明
 
-The assistant connects to multiple MCP servers using Node.js packages. Ensure you have a stable internet connection and valid API keys for all services. The tool chaining capabilities allow for complex workflows that span multiple platforms, making it a powerful productivity multiplier for developers and professionals.
+助手通过 Node.js 包连接多个 MCP 服务器。请确保网络连接稳定,且所有服务都配有有效的 API Key。工具链式调用能力支持跨多个平台的复杂工作流,是开发者和职场人士的强力效率倍增器。
