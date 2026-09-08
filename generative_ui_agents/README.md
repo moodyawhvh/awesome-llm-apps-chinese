@@ -1,12 +1,14 @@
-# 🖼️ Generative UI and Agentic Frontends
+> 🌐 本文档由 [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 翻译,英文原版见原项目。
 
-**Agents that render UI — not just text.**
+# 🖼️ 生成式 UI 与智能体前端
 
-Generative UI (Gen UI) apps let an LLM emit rich, interactive frontend components instead of (or in addition to) plain chat messages. The model decides *what to show*, the frontend renders real components, and the user can click, edit, and respond — closing the loop between reasoning and interface.
+**让智能体渲染 UI,而不只是输出文本。**
 
-This section collects self-contained templates for building Gen UI apps across the common stacks:
+生成式 UI(Gen UI)应用让 LLM 输出富交互的前端组件,而不是(或除了)普通的聊天消息。模型决定*展示什么*,前端渲染真实组件,用户可以点击、编辑、回应——从而闭合"推理"与"界面"之间的循环。
 
-- **AG-UI / CopilotKit** — streaming agent ↔ UI protocol for React apps
-- **Vercel AI SDK** — `streamUI` / React Server Components generative UI
-- **LangChain / LangGraph UI** — structured tool calls rendered as components
-- **Custom tool-call → component renderers** — minimal DIY patterns in any framework
+本板块收集了在常见技术栈下构建生成式 UI 应用的自包含模板:
+
+- **AG-UI / CopilotKit** —— 面向 React 应用的流式智能体 ↔ UI 协议
+- **Vercel AI SDK** —— `streamUI` / React Server Components 生成式 UI
+- **LangChain / LangGraph UI** —— 结构化工具调用渲染为组件
+- **自定义工具调用 → 组件渲染器** —— 任意框架下的极简 DIY 模式
